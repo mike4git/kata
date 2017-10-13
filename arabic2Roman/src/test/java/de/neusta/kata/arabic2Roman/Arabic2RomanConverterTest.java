@@ -27,11 +27,6 @@ public class Arabic2RomanConverterTest {
    }
 
    @Test
-   public void testConvert1984() throws Exception {
-      assertThat(converter.convert(1984), is("MCMLXXXIV"));
-   }
-
-   @Test
    public void test1000() {
       assertThat(converter.convert(1000), is("M"));
    }
@@ -99,5 +94,10 @@ public class Arabic2RomanConverterTest {
    @Test
    public void test1() throws Exception {
       assertThat(converter.convert(1), is("I"));
+   }
+
+   @Test
+   public void test0() throws Exception {
+      assertThat(converter.convert(0), is(""));
    }
 }

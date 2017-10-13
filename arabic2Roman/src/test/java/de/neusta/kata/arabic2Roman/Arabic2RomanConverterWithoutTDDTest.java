@@ -27,78 +27,23 @@ public class Arabic2RomanConverterWithoutTDDTest {
    }
 
    @Test
-   public void testConvert1984() throws Exception {
-      assertThat(converter.convert(1984), is("MCMLXXXIV"));
+   public void test2111() {
+      assertThat(converter.convert(2111), is("MMCXI"));
    }
 
    @Test
-   public void test1000() {
-      assertThat(converter.convert(1000), is("M"));
+   public void test444() {
+      assertThat(converter.convert(444), is("CDXLIV"));
    }
 
    @Test
-   public void test3000() {
-      assertThat(converter.convert(3000), is("MMM"));
+   public void test999() {
+      assertThat(converter.convert(999), is("CMXCIX"));
    }
 
    @Test
-   public void test2300() throws Exception {
-      assertThat(converter.convert(2300), is("MMCCC"));
-   }
-
-   @Test
-   public void test2350() throws Exception {
-      assertThat(converter.convert(2350), is("MMCCCL"));
-   }
-
-   @Test
-   public void test2330() throws Exception {
-      assertThat(converter.convert(2330), is("MMCCCXXX"));
-   }
-
-   @Test
-   public void test40() throws Exception {
-      assertThat(converter.convert(40), is("XL"));
-   }
-
-   @Test
-   public void test90() throws Exception {
-      assertThat(converter.convert(90), is("XC"));
-   }
-
-   @Test
-   public void test500() throws Exception {
-      assertThat(converter.convert(500), is("D"));
-   }
-
-   @Test
-   public void test900() throws Exception {
-      assertThat(converter.convert(900), is("CM"));
-   }
-
-   @Test
-   public void test400() throws Exception {
-      assertThat(converter.convert(400), is("CD"));
-   }
-
-   @Test
-   public void test9() throws Exception {
-      assertThat(converter.convert(9), is("IX"));
-   }
-
-   @Test
-   public void test5() throws Exception {
-      assertThat(converter.convert(5), is("V"));
-   }
-
-   @Test
-   public void test4() throws Exception {
-      assertThat(converter.convert(4), is("IV"));
-   }
-
-   @Test
-   public void test1() throws Exception {
-      assertThat(converter.convert(1), is("I"));
+   public void test666() {
+      assertThat(converter.convert(666), is("DCLXVI"));
    }
 
 }
