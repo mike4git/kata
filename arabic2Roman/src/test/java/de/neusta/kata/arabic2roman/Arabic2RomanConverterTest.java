@@ -1,4 +1,4 @@
-package de.neusta.kata.arabic2Roman;
+package de.neusta.kata.arabic2roman;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
+
+import de.neusta.kata.arabic2roman.Arabic2RomanConverter;
 
 public class Arabic2RomanConverterTest {
 

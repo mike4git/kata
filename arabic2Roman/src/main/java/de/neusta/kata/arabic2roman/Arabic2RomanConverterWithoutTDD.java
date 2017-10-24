@@ -1,4 +1,4 @@
-package de.neusta.kata.arabic2Roman;
+package de.neusta.kata.arabic2roman;
 
 public class Arabic2RomanConverterWithoutTDD {
 

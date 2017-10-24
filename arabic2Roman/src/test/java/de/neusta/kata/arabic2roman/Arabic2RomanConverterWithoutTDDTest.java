@@ -1,4 +1,4 @@
-package de.neusta.kata.arabic2Roman;
+package de.neusta.kata.arabic2roman;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
+
+import de.neusta.kata.arabic2roman.Arabic2RomanConverterWithoutTDD;
 
 public class Arabic2RomanConverterWithoutTDDTest {
 
@@ -44,6 +46,11 @@ public class Arabic2RomanConverterWithoutTDDTest {
    @Test
    public void test666() {
       assertThat(converter.convert(666), is("DCLXVI"));
+   }
+
+   @Test
+   public void test1000() {
+      assertThat(converter.convert(1000), is("M"));
    }
 
 }

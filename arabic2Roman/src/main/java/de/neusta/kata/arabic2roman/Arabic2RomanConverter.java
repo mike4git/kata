@@ -1,4 +1,4 @@
-package de.neusta.kata.arabic2Roman;
+package de.neusta.kata.arabic2roman;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -9,7 +9,7 @@ public class Arabic2RomanConverter {
    private Map<Integer, String> a2r = new TreeMap<Integer, String>(new Comparator<Integer>() {
       public int compare(final Integer o1, final Integer o2) {
          return o2.compareTo(o1);
-      };
+      }
    });
 
    public Arabic2RomanConverter() {
@@ -45,12 +45,11 @@ public class Arabic2RomanConverter {
       return result.toString();
    }
 
-   private int handleDigit(final StringBuilder result, int arabicNumber, final int digit) {
+   private int handleDigit(final StringBuilder result, final int arabicNumber, final int digit) {
       for (int i = 0; i < arabicNumber / digit; i++) {
          result.append(a2r.get(digit));
       }
-      arabicNumber = arabicNumber % digit;
-      return arabicNumber;
+      return arabicNumber % digit;
    }
 
 }
