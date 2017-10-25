@@ -4,7 +4,7 @@ public class Arabic2RomanConverterWithoutTDD {
 
    public String convert(final int arabicNumber) {
 
-      if (arabicNumber > 3000 || arabicNumber < 0) {
+      if (arabicNumber >= 3000 || arabicNumber < 0) {
          throw new IllegalArgumentException();
       }
 
@@ -20,7 +20,7 @@ public class Arabic2RomanConverterWithoutTDD {
       handle10digits(result, rest);
       rest = rest % 10;
 
-      handleUnitPosition(result, rest, "IX");
+      handleUnitPosition(result, rest);
 
       return result.toString();
 
@@ -35,61 +35,37 @@ public class Arabic2RomanConverterWithoutTDD {
    }
 
    private void handle100digits(final StringBuilder result, final int rest) {
-      int digit = rest / 100;
-      // rest = 9**
-      if (digit == 9) {
-         result.append("CM");
-      } else if (digit >= 5) {
-         // rest = 8** - 5**
-         result.append("D");
-         for (int i = 0; i < digit - 5; i++) {
-            result.append("C");
-         }
-      } else if (digit == 4) {
-         // rest = 4**
-         result.append("CD");
-      } else {
-         // rest = 3** - 1**
-         for (int i = 0; i < digit; i++) {
-            result.append("C");
-         }
-      }
+      handleSpecialDigits(100, "C", "D", "M", result, rest);
    }
 
    private void handle10digits(final StringBuilder result, final int rest) {
-      int digit = rest / 10;
-
-      if (digit == 9) {
-         result.append("XC");
-      } else if (digit >= 5) {
-         result.append("L");
-         for (int i = 0; i < digit - 5; i++) {
-            result.append("X");
-         }
-      } else if (digit == 4) {
-         result.append("XL");
-      } else {
-         for (int i = 0; i < digit; i++) {
-            result.append("X");
-         }
-      }
+      handleSpecialDigits(10, "X", "L", "C", result, rest);
    }
 
-   private void handleUnitPosition(final StringBuilder result, final int rest, String romanChar) {
-      int digit = rest;
+   private void handleUnitPosition(final StringBuilder result, final int rest) {
+      handleSpecialDigits(1, "I", "V", "X", result, rest);
+   }
 
+   private void handleSpecialDigits(final int digitValue, final String romanChar4digitValue,
+         final String romanChar4NextDigitValue, final String romanChar4NextDecimalValue, final StringBuilder result,
+         final int rest) {
+      int digit = rest / digitValue;
+      // rest = 9**
       if (digit == 9) {
-         result.append(romanChar);
+         result.append(romanChar4digitValue + romanChar4NextDecimalValue);
       } else if (digit >= 5) {
-         result.append("V");
+         // rest = 8** - 5**
+         result.append(romanChar4NextDigitValue);
          for (int i = 0; i < digit - 5; i++) {
-            result.append("I");
+            result.append(romanChar4digitValue);
          }
       } else if (digit == 4) {
-         result.append("IV");
+         // rest = 4**
+         result.append(romanChar4digitValue + romanChar4NextDigitValue);
       } else {
+         // rest = 3** - 1**
          for (int i = 0; i < digit; i++) {
-            result.append("I");
+            result.append(romanChar4digitValue);
          }
       }
    }

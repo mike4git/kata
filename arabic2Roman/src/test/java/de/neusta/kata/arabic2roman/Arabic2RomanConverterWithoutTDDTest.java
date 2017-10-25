@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertThat;
 
-import de.neusta.kata.arabic2roman.Arabic2RomanConverterWithoutTDD;
-
 public class Arabic2RomanConverterWithoutTDDTest {
 
    private Arabic2RomanConverterWithoutTDD converter;
@@ -53,4 +51,8 @@ public class Arabic2RomanConverterWithoutTDDTest {
       assertThat(converter.convert(1000), is("M"));
    }
 
+   @Test
+   public void test100() throws Exception {
+      assertThat(converter.convert(100), is("C"));
+   }
 }
