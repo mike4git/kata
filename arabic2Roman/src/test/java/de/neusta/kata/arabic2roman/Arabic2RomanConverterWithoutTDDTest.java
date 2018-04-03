@@ -5,7 +5,8 @@ import static org.hamcrest.CoreMatchers.is;
 
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertThat;
@@ -18,11 +19,12 @@ public class Arabic2RomanConverterWithoutTDDTest {
    public ExpectedException expectedException = ExpectedException.none();
 
    @Before
+   @BeforeEach
    public void setUp() {
       converter = new Arabic2RomanConverterWithoutTDD();
    }
 
-   @Test
+   @org.junit.Test
    public void testInvalidNegativeParameter() throws Exception {
       expectedException.expect(IllegalArgumentException.class);
       expectedException.expectMessage("Only numbers between 0 and 3000 are allowed.");

@@ -4,8 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.googlecode.catchexception.CatchException;
 
@@ -22,7 +22,7 @@ public class Arabic2RomanConverterTest {
       converter = new Arabic2RomanConverter();
    }
 
-   @org.junit.jupiter.api.Test
+   @Test
    public void testInvalidNegativeParameter() throws Exception {
       try {
          converter.convert(-1);
@@ -32,12 +32,12 @@ public class Arabic2RomanConverterTest {
       }
    }
 
-   @Test(expected = IllegalArgumentException.class)
+   @org.junit.Test(expected = IllegalArgumentException.class)
    public void testInvalidTooBigParameter() throws Exception {
       converter.convert(3001);
    }
 
-   @Test
+   @org.junit.jupiter.api.Test
    public void testAnotherInvalidTooBigParameter() throws Exception {
       CatchException.catchException(converter).convert(3002);
       assertThat(CatchException.caughtException(), isA(IllegalArgumentException.class));
