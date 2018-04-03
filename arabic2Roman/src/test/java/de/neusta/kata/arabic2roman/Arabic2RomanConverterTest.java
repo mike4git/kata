@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import com.googlecode.catchexception.CatchException;
 
@@ -50,78 +52,12 @@ public class Arabic2RomanConverterTest {
       assertThat(CatchException.caughtException().getMessage(), is("Only numbers between 0 and 3000 are allowed."));
    }
 
-   @Test
-   public void test1000() {
-      assertThat(converter.convert(1000), is("M"));
+   @ParameterizedTest(name = "{0}  → \"{1}\"")
+   @CsvSource({ "0, ''", "1, I", "2, II", "4, IV", "5, V", "9, IX", "40, XL", "90, XC", "400, CD", "500, D", "900, CM",
+         "1000, M", "1984, MCMLXXXIV", "2300, MMCCC", "2330, MMCCCXXX", "2350, MMCCCL", "3000,MMM" })
+   @DisplayName("Konvertiere arabische Zahl in römische Zeichen")
+   void testDifferentValues(final int arabicNumber, final String romanChars) throws Exception {
+      assertThat(new Arabic2RomanConverter().convert(arabicNumber), is(romanChars));
    }
 
-   @Test
-   public void test3000() {
-      assertThat(converter.convert(3000), is("MMM"));
-   }
-
-   @Test
-   public void test2300() throws Exception {
-      assertThat(converter.convert(2300), is("MMCCC"));
-   }
-
-   @Test
-   public void test2350() throws Exception {
-      assertThat(converter.convert(2350), is("MMCCCL"));
-   }
-
-   @Test
-   public void test2330() throws Exception {
-      assertThat(converter.convert(2330), is("MMCCCXXX"));
-   }
-
-   @Test
-   public void test40() throws Exception {
-      assertThat(converter.convert(40), is("XL"));
-   }
-
-   @Test
-   public void test90() throws Exception {
-      assertThat(converter.convert(90), is("XC"));
-   }
-
-   @Test
-   public void test500() throws Exception {
-      assertThat(converter.convert(500), is("D"));
-   }
-
-   @Test
-   public void test900() throws Exception {
-      assertThat(converter.convert(900), is("CM"));
-   }
-
-   @Test
-   public void test400() throws Exception {
-      assertThat(converter.convert(400), is("CD"));
-   }
-
-   @Test
-   public void test9() throws Exception {
-      assertThat(converter.convert(9), is("IX"));
-   }
-
-   @Test
-   public void test5() throws Exception {
-      assertThat(converter.convert(5), is("V"));
-   }
-
-   @Test
-   public void test4() throws Exception {
-      assertThat(converter.convert(4), is("IV"));
-   }
-
-   @Test
-   public void test1() throws Exception {
-      assertThat(converter.convert(1), is("I"));
-   }
-
-   @Test
-   public void test0() throws Exception {
-      assertThat(converter.convert(0), is(""));
-   }
 }
