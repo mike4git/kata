@@ -1,13 +1,15 @@
 package de.neusta.kata.arabic2roman;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
+import com.googlecode.catchexception.CatchException;
 
-import de.neusta.kata.arabic2roman.Arabic2RomanConverter;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class Arabic2RomanConverterTest {
 
@@ -18,14 +20,26 @@ public class Arabic2RomanConverterTest {
       converter = new Arabic2RomanConverter();
    }
 
-   @Test(expected = IllegalArgumentException.class)
+   @Test
    public void testInvalidNegativeParameter() throws Exception {
-      converter.convert(-1);
+      try {
+         converter.convert(-1);
+         fail("Exception should have been thrown before.");
+      } catch (IllegalArgumentException e) {
+         assertThat(e.getMessage(), is("Only numbers between 0 and 3000 are allowed."));
+      }
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testInvalidTooBigParameter() throws Exception {
       converter.convert(3001);
+   }
+
+   @Test
+   public void testAnotherInvalidTooBigParameter() throws Exception {
+      CatchException.catchException(converter).convert(3002);
+      assertThat(CatchException.caughtException(), isA(IllegalArgumentException.class));
+      assertThat(CatchException.caughtException().getMessage(), is("Only numbers between 0 and 3000 are allowed."));
    }
 
    @Test

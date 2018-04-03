@@ -1,16 +1,11 @@
 package de.neusta.kata.arabic2roman;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class Arabic2RomanConverter {
 
-   private Map<Integer, String> a2r = new TreeMap<Integer, String>(new Comparator<Integer>() {
-      public int compare(final Integer o1, final Integer o2) {
-         return o2.compareTo(o1);
-      }
-   });
+   private Map<Integer, String> a2r = new TreeMap<>((final Integer o1, final Integer o2) -> o2.compareTo(o1));
 
    public Arabic2RomanConverter() {
       a2r.put(1000, "M");
@@ -31,7 +26,7 @@ public class Arabic2RomanConverter {
    public String convert(final int number) {
 
       if (number < 0 || number > 3000) {
-         throw new IllegalArgumentException();
+         throw new IllegalArgumentException("Only numbers between 0 and 3000 are allowed.");
       }
 
       StringBuilder result = new StringBuilder();

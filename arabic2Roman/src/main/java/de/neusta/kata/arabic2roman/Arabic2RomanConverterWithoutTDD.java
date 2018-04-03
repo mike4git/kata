@@ -5,7 +5,7 @@ public class Arabic2RomanConverterWithoutTDD {
    public String convert(final int arabicNumber) {
 
       if (arabicNumber >= 3000 || arabicNumber < 0) {
-         throw new IllegalArgumentException();
+         throw new IllegalArgumentException("Only numbers between 0 and 3000 are allowed.");
       }
 
       StringBuilder result = new StringBuilder();
