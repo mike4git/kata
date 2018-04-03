@@ -3,7 +3,7 @@ package de.neusta.kata.arabic2roman;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 
-import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,6 @@ public class Arabic2RomanConverterTest {
 
    private Arabic2RomanConverter converter;
 
-   @Before
    @BeforeEach
    public void setUp() {
       converter = new Arabic2RomanConverter();
@@ -32,12 +31,15 @@ public class Arabic2RomanConverterTest {
       }
    }
 
-   @org.junit.Test(expected = IllegalArgumentException.class)
+   @Test
    public void testInvalidTooBigParameter() throws Exception {
-      converter.convert(3001);
+      Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+         converter.convert(3001);
+      });
+      Assertions.assertEquals(exception.getMessage(), "Only numbers between 0 and 3000 are allowed.");
    }
 
-   @org.junit.jupiter.api.Test
+   @Test
    public void testAnotherInvalidTooBigParameter() throws Exception {
       CatchException.catchException(converter).convert(3002);
       assertThat(CatchException.caughtException(), isA(IllegalArgumentException.class));
