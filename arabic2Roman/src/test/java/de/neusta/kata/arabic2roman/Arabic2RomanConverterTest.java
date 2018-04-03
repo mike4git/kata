@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.isA;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.googlecode.catchexception.CatchException;
@@ -22,6 +23,7 @@ public class Arabic2RomanConverterTest {
    }
 
    @Test
+   @DisplayName("Negative numbers throw an IllegalArgumentException.")
    public void testInvalidNegativeParameter() throws Exception {
       try {
          converter.convert(-1);
@@ -32,6 +34,7 @@ public class Arabic2RomanConverterTest {
    }
 
    @Test
+   @DisplayName("Numbers over 3000 throw an IllegalArgumentException.")
    public void testInvalidTooBigParameter() throws Exception {
       Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
          converter.convert(3001);
@@ -40,6 +43,7 @@ public class Arabic2RomanConverterTest {
    }
 
    @Test
+   @DisplayName("Numbers over 3000 throw an IllegalArgumentException.")
    public void testAnotherInvalidTooBigParameter() throws Exception {
       CatchException.catchException(converter).convert(3002);
       assertThat(CatchException.caughtException(), isA(IllegalArgumentException.class));

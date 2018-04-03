@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertThat;
@@ -20,6 +21,7 @@ public class Arabic2RomanConverterWithoutTDDTest {
    }
 
    @Test
+   @DisplayName("Negative numbers throw an IllegalArgumentException.")
    public void testInvalidNegativeParameter() throws Exception {
       Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
          converter.convert(-1);
@@ -28,6 +30,7 @@ public class Arabic2RomanConverterWithoutTDDTest {
    }
 
    @Test
+   @DisplayName("Numbers over 3000 throw an IllegalArgumentException.")
    public void testInvalidTooBigParameter() throws Exception {
       assertThatThrownBy(() -> {
          converter.convert(3001);
