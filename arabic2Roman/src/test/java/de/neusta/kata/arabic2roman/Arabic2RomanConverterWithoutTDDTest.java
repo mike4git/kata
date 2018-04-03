@@ -2,12 +2,11 @@ package de.neusta.kata.arabic2roman;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertThat;
 
@@ -15,20 +14,17 @@ public class Arabic2RomanConverterWithoutTDDTest {
 
    private Arabic2RomanConverterWithoutTDD converter;
 
-   @Rule
-   public ExpectedException expectedException = ExpectedException.none();
-
-   @Before
    @BeforeEach
    public void setUp() {
       converter = new Arabic2RomanConverterWithoutTDD();
    }
 
-   @org.junit.Test
+   @Test
    public void testInvalidNegativeParameter() throws Exception {
-      expectedException.expect(IllegalArgumentException.class);
-      expectedException.expectMessage("Only numbers between 0 and 3000 are allowed.");
-      converter.convert(-1);
+      Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+         converter.convert(-1);
+      });
+      assertEquals("Only numbers between 0 and 3000 are allowed.", exception.getMessage());
    }
 
    @Test
