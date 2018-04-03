@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.isA;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.googlecode.catchexception.CatchException;
 
@@ -16,11 +17,12 @@ public class Arabic2RomanConverterTest {
    private Arabic2RomanConverter converter;
 
    @Before
+   @BeforeEach
    public void setUp() {
       converter = new Arabic2RomanConverter();
    }
 
-   @Test
+   @org.junit.jupiter.api.Test
    public void testInvalidNegativeParameter() throws Exception {
       try {
          converter.convert(-1);
